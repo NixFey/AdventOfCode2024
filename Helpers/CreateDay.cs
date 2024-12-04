@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace AdventOfCode2024.Helpers;
 
 public static class CreateDay
@@ -47,5 +49,17 @@ public static class CreateDay
         programContent = programContent.Insert(tokenLocation,
             $"new({dayNumber}, typeof(AdventOfCode2024.Day{dayNumber:00}.Problem)),\n    ");
         File.WriteAllText(programFile.FullName, programContent);
+
+        try
+        {
+            var res = Process.Start("git", $"add '{programFile.FullName}' '{newDayDir.FullName}'");
+            res.WaitForExit();
+
+            if (res.ExitCode != 0) throw new ApplicationException();
+        }
+        catch
+        {
+            Console.WriteLine("WARN: Unable to add day files to Git");
+        }
     }
 }
