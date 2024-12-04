@@ -89,12 +89,13 @@ solveCommand.SetHandler(async (ctx) =>
 
             progress.ProgressChanged += HandleProgress(solveTask);
             
-            var p1Result = await dayProblem.SolvePart1(input, progress);
             AnsiConsole.Write(new Rule("Part 1")
             {
                 Style = Style.Parse("green"),
                 Justification = Justify.Left
             });
+            var p1Result = await dayProblem.SolvePart1(input, progress);
+            solveTask.StopTask();
             AnsiConsole.WriteLine(p1Result);
             AnsiConsole.WriteLine();
         });
@@ -110,13 +111,13 @@ solveCommand.SetHandler(async (ctx) =>
 
             progress.ProgressChanged += HandleProgress(solveTask);
             
-            var p2Result = await dayProblem.SolvePart2(input, progress);
-            solveTask.StopTask();
             AnsiConsole.Write(new Rule("Part 2")
             {
                 Style = Style.Parse("green"),
                 Justification = Justify.Left
             });
+            var p2Result = await dayProblem.SolvePart2(input, progress);
+            solveTask.StopTask();
             AnsiConsole.WriteLine(p2Result);
             AnsiConsole.WriteLine();
         });
