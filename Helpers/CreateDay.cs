@@ -52,7 +52,7 @@ public static class CreateDay
 
         try
         {
-            var res = Process.Start("git", $"add '{programFile.FullName}' '{newDayDir.FullName}'");
+            var res = Process.Start("git", ["add", programFile.FullName, newDayDir.FullName]);
             res.WaitForExit();
 
             if (res.ExitCode != 0) throw new ApplicationException();
