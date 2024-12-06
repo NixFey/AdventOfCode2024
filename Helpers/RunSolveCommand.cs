@@ -61,9 +61,13 @@ public static class RunSolveCommand
                     Style = Style.Parse("green"),
                     Justification = Justify.Left
                 });
+                var stopwatch = new Stopwatch();
+                stopwatch.Start();
                 var p1Result = await dayProblem.SolvePart1(input, progress);
+                stopwatch.Stop();
                 solveTask.StopTask();
                 AnsiConsole.WriteLine(p1Result);
+                AnsiConsole.MarkupInterpolated($"  [olive]{stopwatch.ElapsedMilliseconds}ms[/]");
                 AnsiConsole.WriteLine();
             });
         }
@@ -83,9 +87,13 @@ public static class RunSolveCommand
                     Style = Style.Parse("green"),
                     Justification = Justify.Left
                 });
+                var stopwatch = new Stopwatch();
+                stopwatch.Start();
                 var p2Result = await dayProblem.SolvePart2(input, progress);
+                stopwatch.Stop();
                 solveTask.StopTask();
                 AnsiConsole.WriteLine(p2Result);
+                AnsiConsole.MarkupInterpolated($"  [olive]{stopwatch.ElapsedMilliseconds}ms[/]");
                 AnsiConsole.WriteLine();
             });
         }

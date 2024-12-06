@@ -30,7 +30,7 @@ public partial class Problem : DayProblem
     {
         var leftList = new List<int>();
         var rightList = new List<int>();
-        foreach (var parsed in InputHelpers.SplitLines(input).Select(InputHelpers.GetIntsFromLine))
+        foreach (var parsed in InputHelpers.SplitLines(input).Select(l => InputHelpers.GetIntsFromLine(l)))
         {
             leftList.Add(parsed[0]);
             rightList.Add(parsed[1]);

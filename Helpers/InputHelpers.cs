@@ -7,9 +7,9 @@ public static class InputHelpers
         return input.Split('\n').Select(l => l.Trim()).ToList();
     }
 
-    public static List<int> GetIntsFromLine(string line)
+    public static List<int> GetIntsFromLine(string line, char delimiter = ' ')
     {
-        return line.Split(' ', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).ToList()
+        return line.Split(delimiter, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).ToList()
             .Select(i => int.TryParse(i, out var v) ? v : int.MinValue).ToList();
     }
 }

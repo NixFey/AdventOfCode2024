@@ -8,6 +8,7 @@ var days = new Day[]
     new(2, typeof(AdventOfCode2024.Day02.Problem)),
     new(3, typeof(AdventOfCode2024.Day03.Problem)),
     new(4, typeof(AdventOfCode2024.Day04.Problem)),
+    new(5, typeof(AdventOfCode2024.Day05.Problem)),
     //// NEW DAYS
 };
 
