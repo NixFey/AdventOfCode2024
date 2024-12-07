@@ -76,7 +76,7 @@ public class Problem : DayProblem
         return InputHelpers.SplitLines(input).Select(line =>
         {
             var colonSplit = line.Split(':');
-            return (ulong.Parse(colonSplit[0]), InputHelpers.GetULongsFromLine(colonSplit[1]).ToArray());
+            return (ulong.Parse(colonSplit[0]), InputHelpers.GetNumbersFromLine<ulong>(colonSplit[1]).ToArray());
         }).ToArray();
     }
 }

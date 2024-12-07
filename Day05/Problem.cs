@@ -43,9 +43,9 @@ public class Problem : DayProblem
                 for (var i = 1; i < update.Length; i++)
                 {
                     var stop = false;
-                    foreach (var rule in rules.Where(r => r.a == update[i]))
+                    foreach (var rule in rules.Where(r => r.A == update[i]))
                     {
-                        var idxB = Array.IndexOf(update, rule.b);
+                        var idxB = Array.IndexOf(update, rule.B);
                         if (idxB > i || idxB == -1) continue;
                         // Swap
                         (update[i - 1], update[i]) = (update[i], update[i - 1]);
@@ -69,11 +69,11 @@ public class Problem : DayProblem
     private static bool CheckUpdateValidity(int[] update, OrderingRule[] rules)
     {
         var isValid = true;
-        var relevantRules = rules.Where(r => update.Contains(r.a) && update.Contains(r.b));
+        var relevantRules = rules.Where(r => update.Contains(r.A) && update.Contains(r.B));
         foreach (var rule in relevantRules)
         {
-            var idxA = Array.IndexOf(update, rule.a);
-            var idxB = Array.IndexOf(update, rule.b);
+            var idxA = Array.IndexOf(update, rule.A);
+            var idxB = Array.IndexOf(update, rule.B);
 
             if (idxA > idxB)
             {
@@ -90,14 +90,14 @@ public class Problem : DayProblem
         var split = input.Split("\n\n");
         var rules = InputHelpers.SplitLines(split[0]).Select(l =>
         {
-            var ints = InputHelpers.GetIntsFromLine(l, '|');
+            var ints = InputHelpers.GetNumbersFromLine(l, '|');
             return new OrderingRule(ints[0], ints[1]);
         }).ToArray();
-        var updates = InputHelpers.SplitLines(split[1]).Select(l => InputHelpers.GetIntsFromLine(l, ',').ToArray())
+        var updates = InputHelpers.SplitLines(split[1]).Select(l => InputHelpers.GetNumbersFromLine(l, ',').ToArray())
             .ToArray();
 
         return (rules, updates);
     }
 
-    private record OrderingRule(int a, int b);
+    private record OrderingRule(int A, int B);
 }

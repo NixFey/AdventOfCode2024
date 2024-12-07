@@ -1,21 +1,22 @@
+using System.Numerics;
+
 namespace AdventOfCode2024.Helpers;
 
 public static class InputHelpers
 {
-    public static List<string> SplitLines(string input)
+    public static IList<string> SplitLines(string input)
     {
-        return input.Split('\n').Select(l => l.Trim()).ToList();
+        return input.Split('\n').Select(l => l.Trim()).ToArray();
     }
 
-    public static List<int> GetIntsFromLine(string line, char delimiter = ' ')
+    public static IList<T> GetNumbersFromLine<T>(string line, char delimiter = ' ') where T : IParsable<T>
     {
-        return line.Split(delimiter, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).ToList()
-            .Select(i => int.TryParse(i, out var v) ? v : int.MinValue).ToList();
+        return line.Split(delimiter, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries)
+            .Select(i => T.TryParse(i, null, out var v) ? v : throw new Exception($"Unable to parse {i}")).ToArray();
     }
     
-    public static ulong[] GetULongsFromLine(string line, char delimiter = ' ')
+    public static IList<int> GetNumbersFromLine(string line, char delimiter = ' ')
     {
-        return line.Split(delimiter, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).ToList()
-            .Select(i => ulong.TryParse(i, out var v) ? v : ulong.MaxValue).ToArray();
+        return GetNumbersFromLine<int>(line, delimiter);
     }
 }

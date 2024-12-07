@@ -48,7 +48,7 @@ public class Problem : DayProblem
 
     private static List<int[]> ParseInput(string input)
     {
-        return InputHelpers.SplitLines(input).Select(l => InputHelpers.GetIntsFromLine(l).ToArray()).ToList();
+        return InputHelpers.SplitLines(input).Select(l => InputHelpers.GetNumbersFromLine(l).ToArray()).ToList();
     }
 
     private static bool IsReportSafe(int[] report)
