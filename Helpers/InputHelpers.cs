@@ -12,4 +12,10 @@ public static class InputHelpers
         return line.Split(delimiter, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).ToList()
             .Select(i => int.TryParse(i, out var v) ? v : int.MinValue).ToList();
     }
+    
+    public static ulong[] GetULongsFromLine(string line, char delimiter = ' ')
+    {
+        return line.Split(delimiter, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).ToList()
+            .Select(i => ulong.TryParse(i, out var v) ? v : ulong.MaxValue).ToArray();
+    }
 }

@@ -10,8 +10,6 @@ public class Problem : DayProblem
     // Uh... this doesn't work lol and idk why
     public override Task<string> SolvePart1(string input, IProgress<SolveProgress> progress)
     {
-        //throw new NotImplementedException("This solution doesn't seem to produce the right answer?");
-        
         var map = ParseInput(input);
 
         for (var circuitBreaker = 0; circuitBreaker < 10_000; circuitBreaker++)
@@ -30,12 +28,20 @@ public class Problem : DayProblem
     public override Task<string> SolvePart2(string input, IProgress<SolveProgress> progress)
     {
         var map = ParseInput(input);
+        var totalSquares = map.Squares.Length;
+        var squareProgress = 0;
         var numWithLoops = 0;
 
         for (var i = 0; i <= map.Squares.GetUpperBound(0); i++)
         {
             for (var j = 0; j <= map.Squares.GetUpperBound(1); j++)
             {
+                squareProgress += 1;
+                progress.Report(new SolveProgress
+                {
+                    CurrentProgress = squareProgress,
+                    TotalProgress = totalSquares
+                });
                 if (map.Squares[i, j] != SquareStatus.Empty) continue;
                 
                 var newMap = new Map
